@@ -54,7 +54,6 @@ The final round excludes MixColumns.
 ---
 
 ## Project Structure
---
 ```text
 aes_128/
 │
@@ -73,10 +72,8 @@ aes_128/
     ├── sim/
     └── tb/
 ```
---
 
 ## State Table
---
 ```text
 STATE        | ACTION (DATAPATH OPERATION)                          | NEXT STATE
 ------------------------------------------------------------------------------------
