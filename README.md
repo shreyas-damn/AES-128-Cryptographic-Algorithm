@@ -54,7 +54,7 @@ The final round excludes MixColumns.
 ---
 
 ## Project Structure
-
+--
 ```text
 aes_128/
 │
@@ -72,3 +72,41 @@ aes_128/
     ├── scripts/
     ├── sim/
     └── tb/
+```
+--
+
+## State Table
+--
+```text
+STATE        | ACTION (DATAPATH OPERATION)                          | NEXT STATE
+------------------------------------------------------------------------------------
+IDLE         | Wait for start signal                                | LOAD
+
+LOAD         | Load plaintext into state register                    | ROUND_0
+
+ROUND_0      | state = state XOR round_key[0]                        | ROUND_1
+
+ROUND_1      | SubBytes → ShiftRows → MixColumns → AddRoundKey[1]   | ROUND_2
+
+ROUND_2      | SubBytes → ShiftRows → MixColumns → AddRoundKey[2]   | ROUND_3
+
+ROUND_3      | SubBytes → ShiftRows → MixColumns → AddRoundKey[3]   | ROUND_4
+
+ROUND_4      | SubBytes → ShiftRows → MixColumns → AddRoundKey[4]   | ROUND_5
+
+ROUND_5      | SubBytes → ShiftRows → MixColumns → AddRoundKey[5]   | ROUND_6
+
+ROUND_6      | SubBytes → ShiftRows → MixColumns → AddRoundKey[6]   | ROUND_7
+
+ROUND_7      | SubBytes → ShiftRows → MixColumns → AddRoundKey[7]   | ROUND_8
+
+ROUND_8      | SubBytes → ShiftRows → MixColumns → AddRoundKey[8]   | ROUND_9
+
+ROUND_9      | SubBytes → ShiftRows → MixColumns → AddRoundKey[9]   | ROUND_10
+
+ROUND_10     | SubBytes → ShiftRows → AddRoundKey[10] (NO MixColumns) | DONE
+
+DONE         | Output ciphertext, assert done signal                 | IDLE
+
+```
+
